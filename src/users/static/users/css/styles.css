@@ -1,0 +1,255 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@500&family=Source+Sans+Pro&display=swap');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons+Round');
+
+*{
+    font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px 10px 20px;
+    background-color: rgb(41, 37, 44);
+}
+
+a{
+    text-decoration: none;
+}
+
+.container{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    overflow: auto;
+    width: 100%;
+    max-width: 425px;
+    height: 100%;
+}
+
+.error-message{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.error-message p{
+    font-size: 20;
+    color: rgb(158, 255, 169);
+}
+
+.box, .buttons-box{
+    width: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    max-height: 70%;
+    background-color: rgb(51, 49, 70);
+    border-radius: 10px;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+                rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+}
+
+.box{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto;
+    padding: 12px;
+}
+
+.box form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.box::-webkit-scrollbar{
+    width: 8px;
+}
+
+.box::-webkit-scrollbar-thumb{
+    border-radius: 10px;
+    background-color: rgba(170, 170, 170, 0.5);
+}
+
+.buttons-box{
+    overflow-y: hidden;
+}
+
+.user-fields{
+    width: 100%;
+    margin-bottom: 17px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.buttons-box{
+    height: 55px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.user-fields input{
+    font-size: 20px;
+    padding: 10px 10px 10px 5px;
+    width: 94%;
+    border: none;
+    background: none;
+    color: rgb(74, 250, 94);
+    border-bottom: 1px solid rgb(170, 170, 170);
+}
+
+.user-fields input:focus{
+    outline: none;
+}
+
+.user-fields input::placeholder{
+    color: rgb(170, 170, 170);
+}
+
+.user-fields input:-webkit-autofill{
+    -webkit-text-fill-color: rgb(74, 250, 94);
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+.user-fields input:-webkit-autofill::first-line{
+    font-family: 'Poppins', sans-serif;
+    font-size: 20px;
+}
+
+.bar{
+    position: relative;
+    display: block;
+    width: 94%;
+}
+
+.bar:before, .bar:after{
+    content: '';
+    height: 2px; 
+    width: 0px;
+    bottom: 1px; 
+    position: absolute;
+    background: rgb(74, 250, 94);; 
+    transition: 200ms ease all; 
+    -moz-transition: 200ms ease all; 
+    -webkit-transition: 200ms ease all;
+}
+
+.bar:before {
+  left: 50%;
+}
+.bar:after {
+  right: 50%; 
+}
+
+.user-fields input:focus ~ .bar:before{
+  width: 50%;
+}
+
+.user-fields input:focus ~ .bar:after{
+    width: 50%;
+}
+
+.action-button{
+    margin-left: 17px;
+}
+
+.action-button input{
+    border: none;
+    background: none;
+    padding: 0;
+    font-size: 30px;
+    color: rgb(97, 255, 116);
+    transition: 150ms;
+}
+
+.action-button input:hover{
+    cursor: pointer;
+    transform: translateY(-7%)
+}
+
+.buttons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.buttons a{
+    transition: 150ms;
+}
+
+.buttons a:hover{
+    transform: translateY(-7%)
+}
+
+.buttons a span{
+    display: block;
+}
+
+.person-button{
+    margin-right: 5px;
+}
+
+.material-icons-round.notranslate#home{
+    font-size: 41px;
+    color: rgb(158, 255, 169);
+}
+
+.material-icons-round.notranslate#person{
+    font-size: 42px;
+    color: rgb(158, 255, 169);
+}
+
+.person-add-button{
+    margin-right: 9px;
+}
+
+.material-icons-round.notranslate#person_add{
+    font-size: 42px;
+    color: rgb(158, 255, 169);
+}
+
+.box{
+    display: inline-block;
+    padding: 20px 20px 8px 20px;
+}
+
+.box p{
+    font-size: 18px;
+    color: rgb(158, 255, 169);
+    margin-bottom: 12px;
+}
+
+.source{
+    margin-left: 17px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.source a{
+    text-decoration: none;
+    font-size: 30px;
+    color: rgb(97, 255, 116);
+    transition: 150ms;
+}
+
+.source a:hover{
+    transform: translateY(-7%);
+}

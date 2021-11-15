@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load static %}
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>To Do List</title>
+        <link rel="stylesheet" href="{% static 'tasks/css/styles.css' %}">
+        <script src="{% static 'tasks/js/change_color.js' %}" defer></script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="box">
+            {% if total == 0 %}
+                <div class="empty-list">
+                    <div class="empty-text">
+                        <p>No tasks found</p>
+                    </div>
+                </div>
+            {% else %}
+                <dl class="list">
+                {% for task in tasks %}
+                    <div class="list-item">
+                        <div class="title-description">
+                            <a href="{% url 'edit' task.id %}">
+                                <dt class="n-{{task.id}}">{{task.title}}</dt>
+                                <dd class="n-{{task.id}}">{{task.description}}</dd>
+                            </a>
+                        </div>
+                        <div class="list-button">
+                            <a href="{% url 'delete' task.id %}" onmouseover="changeColor('n-{{task.id}}', 'new')" onmouseout="changeColor('n-{{task.id}}', 'old')">
+                                <span id="done" class="material-icons-round md-48 notranslate n-{{task.id}}">done</span>
+                            </a>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endif %}
+                </dl>
+            </div>
+            <div class="buttons-box">
+                <div class="username">
+                {% if request.user.is_authenticated %}
+                    <a href="{% url 'info' %}">
+                        <p>{{request.user}}</p>
+                    </a>
+                {% else %}
+                    <a href="{% url 'info' %}">
+                        <p>Visitor</p>
+                    </a>
+                {% endif %}
+                </div>
+                <div class="buttons">
+                    <a href="{% url 'add' %}">
+                        <span id="add" class="material-icons-round notranslate">add</span> 
+                    </a>
+                    {% if request.user.is_authenticated %}
+                    <a href="{% url 'logout' %}">
+                        <span id="logout" class="material-icons-round notranslate">logout</span>
+                    </a>
+                    {% else %}
+                    <a href="{% url 'login' %}">
+                        <span id="person-outline" class="material-icons-round notranslate">person</span>
+                    </a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

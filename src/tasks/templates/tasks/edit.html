@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load static %}
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Edit</title>
+        <link rel="stylesheet" href="{% static 'tasks/css/styles.css' %}">
+    </head>
+    <body>
+        <div class="container">
+            <div id="box-form" class="box">
+                <form id="edit-form" method="POST">
+                    {% csrf_token %}
+                    {{form.user.as_hidden}}
+                    <div class="user-fields">
+                        {{form.title}}
+                        <span class="bar"></span>
+                    </div>
+                    <div class="user-fields">
+                        {{form.description}}
+                        <span class="bar"></span>
+                    </div>
+                    <p class="created">
+                        {% if request.user.is_authenticated %}
+                            Created: {{task.date}}
+                        {% else %}
+                            Created: {{datetime|date:"M d, Y"}}
+                        {% endif %}
+                    </p>
+                </form>      
+            </div>
+            <div class="buttons-box">
+                <div class="action-button">
+                    <input type="submit" value="Edit" form="edit-form">
+                </div>
+                <div class="buttons">
+                    <a href="{% url 'index' %}">
+                        <span id="home" class="material-icons-round notranslate">home</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

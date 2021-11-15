@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        {% load static %}
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Register</title>
+        <link rel="stylesheet" type="text/css" href="{% static 'users/css/styles.css' %}">
+    </head>
+    <body>
+        <div class="container">
+            <div class="error-message">
+                {% if form.errors %}
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="box">
+                <form id="register-form" method="POST">
+                    {% csrf_token %}
+                    <div class="user-fields">
+                        {{form.username}}
+                        <span class="bar"></span>
+                    </div>
+                    <div class="user-fields">
+                        {{form.password1}}
+                        <span class="bar"></span>
+                    </div>
+                    <div class="user-fields">
+                        {{form.password2}}
+                        <span class="bar"></span>
+                    </div> 
+                </form>
+            </div>
+            <div class="buttons-box">
+                <div class="action-button">
+                    <input type="submit" value="Register" form="register-form">
+                </div>
+                <div class="buttons">
+                    <a class="person-button" href="{% url 'login' %}">
+                        <span id="person" class="material-icons-round notranslate">person</span>
+                    </a>
+                    <a href="{% url 'index' %}">
+                        <span id="home" class="material-icons-round notranslate">home</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

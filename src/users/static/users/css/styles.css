@@ -65,6 +65,10 @@ a{
     padding: 9px 15px 9px 15px;
 }
 
+.box-text{
+    padding: 12px 12px 0px 12px;
+}
+
 .box form{
     display: flex;
     flex-direction: column;

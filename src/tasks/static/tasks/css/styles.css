@@ -10,7 +10,6 @@
 
 body{
     height: 100vh;
-    min-height: -webkit-fill-available;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -50,7 +49,7 @@ a{
     justify-content: center;
     align-items: center;
     height: auto;
-    padding: 12px;
+    padding: 9px 15px 9px 15px;
 }
 
 .box::-webkit-scrollbar{

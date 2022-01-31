@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        {% load static %}
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="{% static 'tasks/css/styles.css' %}">
+        <script src="{% static 'tasks/js/change_color.js' %}" defer></script>
+        <title>{% block title %}{% endblock %}</title>
+    </head>
+    <body>
+        <div class="container">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </body>
+</html>

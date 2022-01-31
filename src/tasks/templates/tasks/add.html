@@ -1,38 +1,30 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        {% load static %}
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Add</title>
-        <link rel="stylesheet" href="{% static 'tasks/css/styles.css' %}">
-    </head>
-    <body>
-        <div class="container">
-            <div id="box-form" class="box">
-                <form id="add-form" method="POST">
-                    {% csrf_token %}
-                    {{form.user.as_hidden}}
-                    <div class="user-fields">
-                        {{form.title}}
-                        <span class="bar"></span>
-                    </div>
-                    <div class="user-fields">
-                        {{form.description}}
-                        <span class="bar"></span>
-                    </div>
-                </form>   
-            </div>
-            <div class="buttons-box">
-                <div class="action-button">
-                    <input type="submit" value="Add" form="add-form">
-                </div>
-                <div class="buttons">
-                    <a href="{% url 'index' %}">
-                        <span id="home" class="material-icons-round notranslate">home</span>
-                    </a>
-                </div>
-            </div>
+{% extends "tasks/base.html" %}
+
+{% block title %}Add{% endblock %}
+
+{% block content %}
+<div id="box-form" class="box">
+    <form id="add-form" method="POST">
+        {% csrf_token %}
+        {{form.user.as_hidden}}
+        <div class="user-fields">
+            {{form.title}}
+            <span class="bar"></span>
         </div>
-    </body>
-</html>
+        <div class="user-fields">
+            {{form.description}}
+            <span class="bar"></span>
+        </div>
+    </form>   
+</div>
+<div class="buttons-box">
+    <div class="action-button">
+        <input type="submit" value="Add" form="add-form">
+    </div>
+    <div class="buttons">
+        <a href="{% url 'index' %}">
+            <span id="home" class="material-icons-round notranslate">home</span>
+        </a>
+    </div>
+</div>
+{% endblock %}

@@ -5,7 +5,10 @@ from . import models
 class TaskForm(forms.ModelForm):
     class Meta:
         model = models.Task
-        fields = '__all__'
+        fields = (
+            'title',
+            'description',
+        )
 
         widgets = {
             'title': forms.TextInput(

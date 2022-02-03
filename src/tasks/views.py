@@ -23,10 +23,7 @@ def index(request):
 
 def add(request):
     if request.method == 'GET':
-        if request.user.is_authenticated:
-            form = forms.TaskForm(initial={'user': request.user})
-        else:
-            form = forms.TaskForm()
+        form = forms.TaskForm()
 
         context = {
             'form': form,
@@ -35,11 +32,14 @@ def add(request):
         return render(request, 'tasks/add.html', context)
     elif request.method == 'POST':
         response = redirect('index')
-        form = forms.TaskForm(request.POST)
 
         if request.user.is_authenticated:
+            form = forms.TaskForm(request.POST)
+
             if form.is_valid():
-                form.save()
+                new_task = form.save(commit=False)
+                new_task.user = request.user
+                new_task.save()
         else:
             title = request.POST.get('title')
             description = request.POST.get('description')

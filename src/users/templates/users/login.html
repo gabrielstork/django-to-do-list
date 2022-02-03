@@ -1,47 +1,39 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        {% load static %}
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Login</title>
-        <link rel="stylesheet" type="text/css" href="{% static 'users/css/styles.css' %}">
-    </head>
-    <body>
-        <div class="container">
-            <div class="error-message">
-            {% if messages %}
-                {% for message in messages %}
-                    <p>{{message}}</p>
-                {% endfor %}
-            {% endif %}
-            </div>
-            <div class="box">
-                <form id="login-form" method="POST">
-                    {% csrf_token %}
-                    <div class="user-fields">
-                        {{form.username}}
-                        <span class="bar"></span>
-                    </div>
-                    <div class="user-fields">
-                        {{form.password}}
-                        <span class="bar"></span>
-                    </div>
-                </form>
-            </div>
-            <div class="buttons-box">
-                <div class="action-button">
-                    <input type="submit" value="Login" form="login-form">
-                </div>
-                <div class="buttons">
-                    <a class="person-add-button" href="{% url 'register' %}">
-                        <span id="person_add" class="material-icons-round notranslate">person_add</span>
-                    </a>
-                    <a href="{% url 'index' %}">
-                        <span id="home" class="material-icons-round notranslate">home</span>
-                    </a>
-                </div>
-            </div>
+{% extends "users/base.html" %}
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+<div class="error-message">
+{% if messages %}
+    {% for message in messages %}
+        <p>{{message}}</p>
+    {% endfor %}
+{% endif %}
+</div>
+<div class="box">
+    <form id="login-form" method="POST">
+        {% csrf_token %}
+        <div class="user-fields">
+            {{form.username}}
+            <span class="bar"></span>
         </div>
-    </body>
-</html>
+        <div class="user-fields">
+            {{form.password}}
+            <span class="bar"></span>
+        </div>
+    </form>
+</div>
+<div class="buttons-box">
+    <div class="action-button">
+        <input type="submit" value="Login" form="login-form">
+    </div>
+    <div class="buttons">
+        <a class="person-add-button" href="{% url 'register' %}">
+            <span id="person_add" class="material-icons-round notranslate">person_add</span>
+        </a>
+        <a href="{% url 'index' %}">
+            <span id="home" class="material-icons-round notranslate">home</span>
+        </a>
+    </div>
+</div>
+{% endblock %}

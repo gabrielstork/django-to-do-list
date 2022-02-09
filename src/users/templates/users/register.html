@@ -1,6 +1,6 @@
 {% extends "users/base.html" %}
 
-{% block title %}Login{% endblock %}
+{% block title %}Register{% endblock %}
 
 {% block content %}
 <div class="error-message">
@@ -37,7 +37,7 @@
         <a class="person-button" href="{% url 'login' %}">
             <span id="person" class="material-icons-round notranslate">person</span>
         </a>
-        <a href="{% url 'index' %}">
+        <a href="{% url 'tasks' %}">
             <span id="home" class="material-icons-round notranslate">home</span>
         </a>
     </div>

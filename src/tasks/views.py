@@ -4,7 +4,7 @@ from . import forms
 from . import functions
 
 
-def index(request):
+def tasks(request):
     if request.method == 'GET':
         if request.user.is_authenticated:
             tasks = models.Task.objects.filter(user=request.user)
@@ -21,7 +21,7 @@ def index(request):
         return render(request, 'tasks/index.html', context)
 
 
-def add(request):
+def tasks_add(request):
     if request.method == 'GET':
         form = forms.TaskForm()
 
@@ -31,7 +31,7 @@ def add(request):
 
         return render(request, 'tasks/add.html', context)
     elif request.method == 'POST':
-        response = redirect('index')
+        response = redirect('tasks')
 
         if request.user.is_authenticated:
             form = forms.TaskForm(request.POST)
@@ -63,7 +63,7 @@ def add(request):
         return response
 
 
-def edit(request, pk):
+def tasks_edit(request, pk):
     if request.method == 'GET':
         context = {}
 
@@ -89,7 +89,7 @@ def edit(request, pk):
 
         return render(request, 'tasks/edit.html', context)
     elif request.method == 'POST':
-        response = redirect('index')
+        response = redirect('tasks')
 
         if request.user.is_authenticated:
             task = models.Task.objects.get(id=pk)
@@ -121,9 +121,9 @@ def edit(request, pk):
         return response
 
 
-def delete(request, pk):
+def tasks_delete(request, pk):
     if request.method == 'GET':
-        response = redirect('index')
+        response = redirect('tasks')
 
         if request.user.is_authenticated:
             task = models.Task.objects.filter(id=pk)

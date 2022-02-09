@@ -15,13 +15,13 @@
     {% for task in tasks %}
         <div class="list-item">
             <div class="title-description">
-                <a href="{% url 'edit' task.id %}">
+                <a href="{% url 'tasks_edit' task.id %}">
                     <dt class="n-{{task.id}}">{{task.title}}</dt>
                     <dd class="n-{{task.id}}">{{task.description}}</dd>
                 </a>
             </div>
             <div class="list-button">
-                <a href="{% url 'delete' task.id %}" onmouseover="changeColor('n-{{task.id}}', 'new')" onmouseout="changeColor('n-{{task.id}}', 'old')">
+                <a href="{% url 'tasks_delete' task.id %}" onmouseover="changeColor('n-{{task.id}}', 'new')" onmouseout="changeColor('n-{{task.id}}', 'old')">
                     <span id="done" class="material-icons-round md-48 notranslate n-{{task.id}}">done</span>
                 </a>
             </div>
@@ -43,7 +43,7 @@
     {% endif %}
     </div>
     <div class="buttons">
-        <a href="{% url 'add' %}">
+        <a href="{% url 'tasks_add' %}">
             <span id="add" class="material-icons-round notranslate">add</span> 
         </a>
         {% if request.user.is_authenticated %}

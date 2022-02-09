@@ -6,8 +6,13 @@ from . import forms
 from . import functions
 
 
+def users_info(request):
+    if request.method == 'GET':
+        return render(request, 'users/info.html')
+
+
 @user_passes_test(functions.check_is_visitor)
-def login(request):
+def users_login(request):
     if request.method == 'GET':
         form = forms.LoginForm()
 
@@ -21,14 +26,14 @@ def login(request):
 
         if user is not None:
             auth.login(request, user)
-            return redirect('index')
+            return redirect('tasks')
         else:
             messages.error(request, 'Invalid username or password.')
-            return redirect('login')
+            return redirect('users_login')
 
 
 @user_passes_test(functions.check_is_visitor)
-def register(request):
+def users_register(request):
     if request.method == 'GET':
         form = forms.RegisterForm()
 
@@ -46,10 +51,10 @@ def register(request):
 
             if user is not None:
                 auth.login(request, user)
-                return redirect('index')
+                return redirect('tasks')
             else:
                 messages.error(request, 'Something went wrong.')
-                return redirect('register')
+                return redirect('users_register')
         else:
             context = {
                 'form': form,
@@ -59,11 +64,6 @@ def register(request):
 
 
 @login_required
-def logout(request):
+def users_logout(request):
     auth.logout(request)
-    return redirect('index')
-
-
-def info(request):
-    if request.method == 'GET':
-        return render(request, 'users/info.html')
+    return redirect('tasks')

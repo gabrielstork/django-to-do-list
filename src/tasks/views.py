@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.db import IntegrityError
+from django.http import HttpResponse
 from . import models
 from . import forms
 from . import functions
@@ -39,7 +41,12 @@ def tasks_add(request):
             if form.is_valid():
                 new_task = form.save(commit=False)
                 new_task.user = request.user
-                new_task.save()
+                new_task.task_id = functions.generate_id()
+
+                try:
+                    new_task.save()
+                except IntegrityError:
+                    return HttpResponse(status=500)
         else:
             title = request.POST.get('title')
             description = request.POST.get('description')

@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from . import models
 from . import forms
 from . import functions
@@ -68,7 +68,7 @@ def tasks_edit(request, pk):
         context = {}
 
         if request.user.is_authenticated:
-            task = models.Task.objects.get(id=pk)
+            task = get_object_or_404(models.Task, task_id=pk, user=request.user)
             form = forms.TaskForm(instance=task)
         else:
             tasks = functions.get_tasks_cookies(request)
@@ -92,7 +92,7 @@ def tasks_edit(request, pk):
         response = redirect('tasks')
 
         if request.user.is_authenticated:
-            task = models.Task.objects.get(id=pk)
+            task = get_object_or_404(models.Task, task_id=pk, user=request.user)
             form = forms.TaskForm(request.POST, instance=task)
 
             if form.is_valid():
@@ -126,7 +126,7 @@ def tasks_delete(request, pk):
         response = redirect('tasks')
 
         if request.user.is_authenticated:
-            task = models.Task.objects.filter(id=pk)
+            task = get_object_or_404(models.Task, task_id=pk, user=request.user)
             task.delete()
         else:
             tasks = functions.get_tasks_cookies(request)

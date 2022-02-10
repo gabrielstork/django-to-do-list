@@ -1,5 +1,13 @@
 import ast
 import datetime
+import string
+import random
+
+CHARS = string.ascii_letters + string.digits
+
+
+def generate_id():
+    return ''.join(random.choices(CHARS, k=8))
 
 
 def get_tasks_cookies(request):

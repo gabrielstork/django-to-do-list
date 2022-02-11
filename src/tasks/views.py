@@ -53,7 +53,7 @@ def tasks_add(request):
             tasks = functions.get_tasks_cookies(request)
 
             new_task = {
-                'id': functions.set_task_id(tasks),
+                'task_id': functions.generate_id(),
                 'title': title,
                 'description': description,
                 'date': functions.get_datetime(),
@@ -79,7 +79,14 @@ def tasks_edit(request, pk):
             form = forms.TaskForm(instance=task)
         else:
             tasks = functions.get_tasks_cookies(request)
-            task = next(task for task in tasks if task.get('id') == pk)
+
+            task = next(
+                (task for task in tasks if task.get('task_id') == pk), 
+                None,
+            )
+
+            if task is None:
+                return HttpResponse(status=404)
 
             initial = {
                 'title': task.get('title'),
@@ -106,7 +113,7 @@ def tasks_edit(request, pk):
                 form.save()
         else:
             tasks = functions.get_tasks_cookies(request)
-            edit_task = next(task for task in tasks if task.get('id') == pk)
+            edit_task = next(task for task in tasks if task.get('task_id') == pk)
 
             title_updated = request.POST.get('title')
             description_updated = request.POST.get('description')
@@ -116,7 +123,7 @@ def tasks_edit(request, pk):
             )
 
             updated_tasks = [
-                edit_task if task.get('id') == pk else task for task in tasks
+                edit_task if task.get('task_id') == pk else task for task in tasks
             ]
 
             response.set_cookie(
@@ -139,11 +146,17 @@ def tasks_delete(request, pk):
             tasks = functions.get_tasks_cookies(request)
 
             if len(tasks) == 1:
+                if tasks[0].get('task_id') != pk:
+                    return HttpResponse(status=404)
+
                 response.delete_cookie('tasks')
             else:
                 updated_tasks = [
-                    task for task in tasks if task.get('id') != pk
+                    task for task in tasks if task.get('task_id') != pk
                 ]
+
+                if updated_tasks == tasks:
+                    return HttpResponse(status=404)
 
                 response.set_cookie(
                     'tasks',

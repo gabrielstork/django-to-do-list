@@ -21,14 +21,6 @@ def get_tasks_cookies(request):
     return tasks
 
 
-def set_task_id(tasks):
-    if len(tasks) == 0:
-        return 1
-    else:
-        last_id = tasks[-1].get('id')
-        return last_id + 1
-
-
 def get_datetime():
     return str(datetime.datetime.now())
 

@@ -6,7 +6,6 @@
 <div id="box-form" class="box">
     <form id="edit-form" method="POST">
         {% csrf_token %}
-        {{form.user.as_hidden}}
         <div class="user-fields">
             {{form.title}}
             <span class="bar"></span>

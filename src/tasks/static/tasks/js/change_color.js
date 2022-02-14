@@ -1,13 +1,14 @@
-function changeColor(className, status) {
-	var elements = document.getElementsByClassName(className);
+function changeColor(className, isOn) {
+	const elements = document.getElementsByClassName(className);
 
-	for (var i = 0; i < elements.length; i++) {
-        if (status == 'new') {
-            elements[i].style.color = 'rgb(170, 170, 170)';
-        }
-        else {
-            if (i == 1) elements[i].style.color = 'rgb(158, 255, 169)';
-            else elements[i].style.color = 'rgb(97, 255, 116)';
-        }
-	}
+    if (isOn) {
+        elements[0].style.color = 'rgb(170, 170, 170)';
+        elements[1].style.color = 'rgb(170, 170, 170)';
+        elements[2].style.color = 'rgb(170, 170, 170)';
+    } else {
+        elements[0].style.color = 'rgb(97, 255, 116)';
+        elements[1].style.color = 'rgb(158, 255, 169)';
+        elements[2].style.color = 'rgb(97, 255, 116)';
+    }
+
 }

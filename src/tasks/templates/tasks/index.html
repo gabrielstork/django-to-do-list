@@ -16,13 +16,13 @@
         <div class="list-item">
             <div class="title-description">
                 <a href="{% url 'tasks_edit' task.task_id %}">
-                    <dt class="n-{{task.id}}">{{task.title}}</dt>
-                    <dd class="n-{{task.id}}">{{task.description}}</dd>
+                    <dt class="n-{{task.task_id}}">{{task.title}}</dt>
+                    <dd class="n-{{task.task_id}}">{{task.description}}</dd>
                 </a>
             </div>
             <div class="list-button">
-                <a href="{% url 'tasks_delete' task.task_id %}" onmouseover="changeColor('n-{{task.id}}', 'new')" onmouseout="changeColor('n-{{task.id}}', 'old')">
-                    <span id="done" class="material-icons-round md-48 notranslate n-{{task.id}}">done</span>
+                <a href="{% url 'tasks_delete' task.task_id %}" onmouseover="changeColor('n-{{task.task_id}}', true)" onmouseout="changeColor('n-{{task.task_id}}', false)">
+                    <span id="done" class="material-icons-round md-48 notranslate n-{{task.task_id}}">done</span>
                 </a>
             </div>
         </div>
